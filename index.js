@@ -15,15 +15,16 @@ app.post("/lockfolder", async (req, res) => {
   try {
     const authCode = req.body.authCode;
     const folderId = req.body.folderId;
-
+/*
     const tokenInfo = await sdk.getTokensAuthorizationCodeGrant(authCode);
     const client = sdk.getBasicClient(tokenInfo.accessToken);
 
     // 受け取った対象のファイルに対してロックをかける
     await client.folders.lock(folderId);
+    */
 
     res.status(200).json({
-      message: "folder locked",
+      message: `${folderId}`//"folder locked",
     });
   } catch (e) {
     console.error(e);
