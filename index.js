@@ -1,11 +1,10 @@
 const express = require("express");
-const bodyParser = require('body-parser');
 const BoxSDK = require("box-node-sdk");
 
 const app = express();
 
-app.use(bodyParser.urlencoded());
-app.use(bodyParser.json());
+app.use(express.urlencoded());
+app.use(express.json());
 
 const sdk = new BoxSDK({
   clientID: process.env.clientID,
@@ -27,6 +26,7 @@ app.post("/lockfolder", async (req, res) => {
       message: "folder locked",
     });
   } catch (e) {
+    console.error(e);
     res.status(500).json({ error: e.message });
   }
 });
