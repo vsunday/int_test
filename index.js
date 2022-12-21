@@ -15,13 +15,6 @@ app.get("/auth", (req, res) => {
 });
 
 app.post("/lockfolder", async (req, res) => {
-  try {
-    // clientIDと、clientSecretは、構成のクライアントIDとクライアント機密コード
-    const sdk = new boxSDK({
-      clientID: process.env.clientID,
-      clientSecret: process.env.clientSecret
-    });
-
     const authCode = req.body.authCode;
     const folderId = req.body.folderId;
 
