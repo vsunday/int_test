@@ -8,6 +8,7 @@ app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 
 app.post("/lockfolder", async (req, res) => {
+  try {
     const authCode = req.body.authCode;
     const folderId = req.body.folderId;
 
