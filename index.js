@@ -5,6 +5,11 @@ const app = express();
 
 app.use(express.urlencoded({ extend: false }));
 
+app.get("/auth", (req, res) => {
+  const auth_url = sdk.getAuthorizeURL({response_type: "code"});
+  res.send(auth_url);
+});
+
 app.post("/lockfolder", async (req, res) => {
   try {
     // clientIDと、clientSecretは、構成のクライアントIDとクライアント機密コード
