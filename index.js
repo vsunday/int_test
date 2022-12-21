@@ -1,9 +1,11 @@
 const express = require("express");
+const bodyParser = require('body-parser');
 const boxSDK = require("box-node-sdk");
 
 const app = express();
 
-app.use(express.urlencoded({ extend: false }));
+app.use(bodyParser.urlencoded());
+app.use(bodyParser.json());
 
 app.post("/lockfolder", async (req, res) => {
     const authCode = req.body.authCode;
