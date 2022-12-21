@@ -7,6 +7,11 @@ const app = express();
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 
+const sdk = new BoxSDK({
+  clientID: process.env.CLIENT_ID,
+  clientSecret: process.env.CLIENT_SECRET
+});
+
 app.post("/lockfolder", async (req, res) => {
   try {
     const authCode = req.body.authCode;
