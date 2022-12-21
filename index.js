@@ -2,17 +2,8 @@ const express = require("express");
 const boxSDK = require("box-node-sdk");
 
 const app = express();
-    const sdk = new boxSDK({
-      clientID: process.env.clientID,
-      clientSecret: process.env.clientSecret
-    });
 
 app.use(express.urlencoded({ extend: false }));
-
-app.get("/auth", (req, res) => {
-  const auth_url = sdk.getAuthorizeURL({response_type: "code"});
-  res.redirect(auth_url);
-});
 
 app.post("/lockfolder", async (req, res) => {
     const authCode = req.body.authCode;
