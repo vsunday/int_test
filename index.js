@@ -1,20 +1,16 @@
 const express = require("express");
-const multer = require("multer");
 const BoxSDK = require("box-node-sdk");
 
 const app = express();
-const upload = multer();
 
 const sdk = new BoxSDK({
   clientID: process.env.clientID,
   clientSecret: process.env.clientSecret
 });
 
-app.get("/lockfolder", upload.none(), async (req, res) => {
+app.get("/lockfolder", async (req, res) => {
   try {
-    //const authCode = req.body.authCode;
     const authCode = req.query.authCode;
-    //const folderId = req.body.folderId;
     const folderId = req.query.folderId;
 
     const tokenInfo = await sdk.getTokensAuthorizationCodeGrant(authCode);
