@@ -2,12 +2,16 @@ const express = require("express");
 const boxSDK = require("box-node-sdk");
 
 const app = express();
+    const sdk = new boxSDK({
+      clientID: process.env.clientID,
+      clientSecret: process.env.clientSecret
+    });
 
 app.use(express.urlencoded({ extend: false }));
 
 app.get("/auth", (req, res) => {
   const auth_url = sdk.getAuthorizeURL({response_type: "code"});
-  res.send(auth_url);
+  res.redirect(auth_url);
 });
 
 app.post("/lockfolder", async (req, res) => {
@@ -35,7 +39,7 @@ app.post("/lockfolder", async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || "4000";
+const PORT = process.env.PORT || "3000";
 app.listen(PORT, (result) => {
   console.log("Express Server started on port: " + PORT);
 });
