@@ -10,10 +10,12 @@ const sdk = new BoxSDK({
   clientSecret: process.env.clientSecret
 });
 
-app.post("/lockfolder", upload.none(), async (req, res) => {
+app.get("/lockfolder", upload.none(), async (req, res) => {
   try {
-    const authCode = req.body.authCode;
-    const folderId = req.body.folderId;
+    //const authCode = req.body.authCode;
+    const authCode = req.query.authCode;
+    //const folderId = req.body.folderId;
+    const folderId = req.query.folderId;
 
     const tokenInfo = await sdk.getTokensAuthorizationCodeGrant(authCode);
     const client = sdk.getBasicClient(tokenInfo.accessToken);
