@@ -1,6 +1,6 @@
 const express = require("express");
 const bodyParser = require('body-parser');
-const boxSDK = require("box-node-sdk");
+const BoxSDK = require("box-node-sdk");
 
 const app = express();
 
@@ -8,8 +8,8 @@ app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 
 const sdk = new BoxSDK({
-  clientID: process.env.CLIENT_ID,
-  clientSecret: process.env.CLIENT_SECRET
+  clientID: process.env.clientID,
+  clientSecret: process.env.clientSecret
 });
 
 app.post("/lockfolder", async (req, res) => {
